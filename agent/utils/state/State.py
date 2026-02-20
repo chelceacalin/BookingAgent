@@ -4,4 +4,3 @@ from langchain_core.messages import BaseMessage
 
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
-    should_continue: bool
