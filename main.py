@@ -1,12 +1,12 @@
-from agent import *
-from langchain_core.messages import HumanMessage
+from flask import Flask
+from api import chatbot
 
+app = Flask(__name__)
+app.register_blueprint(chatbot)
 
-def main():
-    response=graph.invoke(
-        {"messages": [HumanMessage(' what is the location of the company. also please show me the reservations')]})
-    last_message = response["messages"][-1]
-    print(last_message.content)
+@app.route("/", methods=["GET"])
+def sayhi():
+    return  ""
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=False, port=5000, host="0.0.0.0")
