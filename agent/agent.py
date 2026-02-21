@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph, END, START
 from .utils.state import *
 from .utils.nodes import *
 from .utils.edges import *
-from .utils.memory import *
+from .utils.memory import checkpointer
 
 graph_build = StateGraph(AgentState)  # type: ignore
 graph_build.add_node("agent", agent)

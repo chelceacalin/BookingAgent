@@ -1,10 +1,11 @@
 from ..state import *
 from ..llm import *
 from ..prompts import *
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, SystemMessage
 
 
 def agent(state: AgentState) -> AgentState:
-    messages = [SYSTEM_PROMPT] + state["messages"]
+    history = state["messages"][-20:]
+    messages = [SystemMessage(content=SYSTEM_PROMPT + CONTEXT)] + history
     response: AIMessage = llm.invoke(messages)
     return {"messages": [response]}
