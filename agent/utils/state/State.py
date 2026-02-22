@@ -6,5 +6,8 @@ from langchain_core.messages import BaseMessage
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
     caller: str
+    phone:str
     appointment_date: str
+    appointment_time: str
     services: List[str]
+    booking_confirmed: bool
