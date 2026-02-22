@@ -1,12 +1,13 @@
-from flask import Blueprint, Response
-from agent import graph
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse,Response
 
-server = Blueprint('server', __name__)
+server = APIRouter()
 
-@server.route('/graph', methods=['GET'])
+@server.get('/graph')
 def get_graph_image():
     try:
-        graphImage = graph.get_graph().draw_mermaid_png()
-        return Response(graphImage, mimetype='image/png')
+        from agent import graph
+        graph_image = graph.get_graph().draw_mermaid_png()
+        return Response(content=graph_image, media_type='image/png')
     except Exception as e:
-        return {"error": str(e)}, 500
+        return JSONResponse(status_code=500, content={"error": str(e)})

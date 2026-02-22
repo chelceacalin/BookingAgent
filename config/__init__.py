@@ -1,5 +1,4 @@
-from .flask_config import app
-from .db_config import db
+from .fastapi_config import app
 from .logging_config import logger
 
-__all__ = ['app', "logger", "db"]
+__all__ = ['app', "logger"]
