@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
-from api import chatbot, memory
+from api import chatbot, memory, server
 from .logging_config import logger
+
 app = Flask(__name__)
 app.register_blueprint(chatbot)
 app.register_blueprint(memory, url_prefix='/memory')
+app.register_blueprint(server, url_prefix='/server')
 
 
 @app.before_request
@@ -22,5 +24,5 @@ def handle_error(e):
 
 
 @app.after_request
-def after_request():
-    pass
+def after_request(response):
+    return response
