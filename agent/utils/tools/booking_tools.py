@@ -7,7 +7,8 @@ import uuid
 
 @tool
 def list_bookings(status: str | None = None, date_str: str | None = None) -> str:
-    """List all bookings, optionally filtered by status or date."""
+    """List all bookings, optionally filtered by status or date.
+    Based on this you can figure out which appointments are available or which times are not booked"""
     db = SessionLocal()
     try:
         query = db.query(Booking)

@@ -39,8 +39,9 @@ async def generate_response(sessionId: str, query: str):
 
         elif "tools" in event:
             tool_msg = event["tools"]["messages"][0]
-            if hasattr(tool_msg, "content"):
-                yield f"data: [Tool result: {tool_msg.content}]\n\n"
+            pass
+            # if hasattr(tool_msg, "content"):
+            #     yield f"data: [Tool result: {tool_msg.content}]\n\n"
 @chatbot.post("/chat")
 def chat(body: ChatRequest):
     sessionId = body.sessionId
