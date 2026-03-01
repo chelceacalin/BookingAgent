@@ -251,3 +251,14 @@ body {
     background: var(--border-color);
     cursor: not-allowed;
 }
+
+.tool-message {
+    font-size: 12px;
+    color: #8b5cf6;
+    background: #f5f3ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    align-self: flex-start;
+    margin: 4px 0;
+    font-family: monospace;
+}

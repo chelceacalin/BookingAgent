@@ -2,13 +2,20 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from contextlib import asynccontextmanager
 from api.chatbot import chatbot
 from api.memory import memory
 from api.server import server
 from .logging_config import logger
+from agent.agent import init_graph
 import os
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_graph()
+    yield
+app = FastAPI(lifespan=lifespan)
 app.include_router(chatbot)
 app.include_router(memory, prefix="/memory")
 app.include_router(server, prefix="/server")
